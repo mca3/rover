@@ -1,0 +1,25 @@
+{{template "header" .}}
+
+<nav>
+	<a href="/">rover</a>
+	<form action="/" method="GET">
+		<input type="search" name="q" value="{{.Q}}">
+		<input type="submit" value="Search">
+	</form>
+</nav>
+
+<main>
+{{range .Results}}
+<div class="result">
+	<a href="{{.Url}}">
+		<h3>{{.Title}}</h3>
+		<span class="link">{{.Url}}</span>
+		<p>{{.Snip}}</p>
+	</a>
+</div>
+{{end}}
+</main>
+
+</div>
+
+{{template "footer" .}}
