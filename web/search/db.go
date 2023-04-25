@@ -7,10 +7,10 @@ import (
 )
 
 type result struct {
-	Url string
+	Url   string
 	Title string
-	Snip string
-	Rank float64
+	Snip  string
+	Rank  float64
 }
 
 const pageAmount = 20

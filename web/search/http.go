@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net/http"
-	"html/template"
 	"embed"
+	"html/template"
+	"net/http"
 	"path/filepath"
 
 	"github.com/mca3/mwr"
@@ -12,7 +12,7 @@ import (
 type htmlData struct {
 	Title string
 
-	Q string
+	Q       string
 	Results []result
 }
 
@@ -35,8 +35,8 @@ func search(c *mwr.Ctx) error {
 	}
 
 	data := htmlData{
-		Title: "Search",
-		Q: query,
+		Title:   "Search",
+		Q:       query,
 		Results: res,
 	}
 
