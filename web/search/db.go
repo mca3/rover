@@ -31,12 +31,14 @@ func closeDatabase() {
 func searchDatabase(ctx context.Context, query string, page int) ([]result, error) {
 	rows, err := pg.Query(ctx, `
 		SELECT
-			url,
+			search.url,
 			title,
-			ts_headline(body, query),
-			ts_rank_cd(search_index, query) AS rank
+			ts_headline(body, query) as snip,
+			(domains.current_rank * ts_rank_cd(search_index, query)) AS rank
 		FROM
-			search,
+			search
+			LEFT JOIN domains
+				ON domains.id = search.domain,
 			websearch_to_tsquery($1) query
 		WHERE query @@ search_index
 		ORDER BY rank DESC
